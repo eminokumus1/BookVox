@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingTop="50dp"
+    android:paddingStart="20dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bookvox_logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="@dimen/headline_text_size"
+        android:text="@string/book"
+        android:textStyle="bold"
+        android:textColor="@color/purple"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/headline_text_size"
+        android:layout_gravity="center"
+        android:text="@string/vox"
+        android:textColor="@color/purple"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/headline_text_size"
+        android:layout_gravity="center"
+        android:text="@string/dot"
+        android:textColor="@color/orange"/>
+
+</LinearLayout>
