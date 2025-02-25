@@ -5,19 +5,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.eminokumus.bookvox.R
+import androidx.recyclerview.widget.GridLayoutManager
+import com.eminokumus.bookvox.Constants
+import com.eminokumus.bookvox.ScreenType
 import com.eminokumus.bookvox.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
+    private lateinit var viewModel: HomeViewModel
+
+    private val homeAdapter = HomeAdapter(ScreenType.HOME)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        viewModel = HomeViewModel()
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.homeRecycler.adapter = homeAdapter
+
+        observeViewModel()
+
+    }
+
+    private fun observeViewModel(){
+        viewModel.bookList.observe(viewLifecycleOwner){
+            homeAdapter.bookList = it.toMutableList()
+        }
     }
 
 }
