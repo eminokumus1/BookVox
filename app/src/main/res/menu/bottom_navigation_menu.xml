@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="homeFragment"
+        android:id="@+id/homeFragment"
         android:enabled="true"
         android:title="@string/home"
         android:icon="@drawable/home_icon_selector"/>
 
     <item
-        android:id="searchFragment"
+        android:id="@+id/searchFragment"
         android:enabled="true"
         android:title="@string/search"
         android:icon="@drawable/search_icon_selector"/>
