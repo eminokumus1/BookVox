@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.eminokumus.bookvox.Constants
 import com.eminokumus.bookvox.ScreenType
 import com.eminokumus.bookvox.databinding.FragmentHomeBinding
+import com.eminokumus.bookvox.model.Book
 
 
 class HomeFragment : Fragment() {
@@ -16,7 +18,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
 
-    private val homeAdapter = HomeAdapter(ScreenType.HOME)
+    private val homeAdapter = HomeAdapter(ScreenType.HOME).also {
+        it.onBookItemClickListener = object : OnBookItemClickListener{
+            override fun onItemClick(book: Book) {
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookDetailsFragment(book))
+            }
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

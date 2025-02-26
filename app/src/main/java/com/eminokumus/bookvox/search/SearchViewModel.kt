@@ -11,13 +11,13 @@ class SearchViewModel : ViewModel() {
     private val _searchList = MutableLiveData<MutableList<Book>>(mutableListOf())
     val searchList: LiveData<MutableList<Book>> get() = _searchList
 
-    fun searchInBooks(searchKeyword: String){
+    fun searchInBooks(searchKeyword: String) {
         val list = mutableListOf<Book>()
 
-        if (searchKeyword.isNotEmpty()){
+        if (searchKeyword.isNotEmpty()) {
             for (item in Constants.bookList) {
                 addToListIfBookListContains(item, searchKeyword, list)
-                if (list.size >= 10){
+                if (list.size >= 10) {
                     break
                 }
             }
@@ -31,10 +31,8 @@ class SearchViewModel : ViewModel() {
         searchKeyword: String,
         list: MutableList<Book>
     ) {
-        if (item.name.contains(searchKeyword, ignoreCase = true) || item.author.contains(
-                searchKeyword,
-                ignoreCase = true
-            )
+        if (item.name?.contains(searchKeyword, ignoreCase = true) == true
+            || item.author?.contains(searchKeyword, ignoreCase = true) == true
         ) {
             list.add(item)
         }

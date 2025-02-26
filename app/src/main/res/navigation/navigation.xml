@@ -33,5 +33,9 @@
         android:id="@+id/bookDetailsFragment"
         android:name="com.eminokumus.bookvox.bookdetails.BookDetailsFragment"
         android:label="fragment_book_details"
-        tools:layout="@layout/fragment_book_details" />
+        tools:layout="@layout/fragment_book_details" >
+        <argument
+            android:name="book"
+            app:argType="com.eminokumus.bookvox.model.Book" />
+    </fragment>
 </navigation>

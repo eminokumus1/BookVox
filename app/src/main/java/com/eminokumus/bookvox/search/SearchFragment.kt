@@ -6,22 +6,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.navigation.fragment.findNavController
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.ScreenType
 import com.eminokumus.bookvox.databinding.FragmentSearchBinding
 import com.eminokumus.bookvox.home.HomeAdapter
+import com.eminokumus.bookvox.home.OnBookItemClickListener
+import com.eminokumus.bookvox.model.Book
 
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var viewModel: SearchViewModel
 
-    private val homeAdapter = HomeAdapter(ScreenType.SEARCH)
+    private val homeAdapter = HomeAdapter(ScreenType.SEARCH).also {
+        it.onBookItemClickListener = object : OnBookItemClickListener {
+            override fun onItemClick(book: Book) {
+                findNavController().navigate(
+                    SearchFragmentDirections.actionSearchFragmentToBookDetailsFragment(
+                        book
+                    )
+                )
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
         viewModel = SearchViewModel()
 

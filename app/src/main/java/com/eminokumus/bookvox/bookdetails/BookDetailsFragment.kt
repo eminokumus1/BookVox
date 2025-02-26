@@ -10,6 +10,7 @@ import com.eminokumus.bookvox.R
 
 class BookDetailsFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
