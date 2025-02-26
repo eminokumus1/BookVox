@@ -10,4 +10,15 @@
     <string name="explore">Explore</string>
     <string name="search_hint">Search Books or Author...</string>
     <string name="book_image_description">Image of the Book</string>
+    <string name="back_button_description">Back button</string>
+    <string name="play_audio">Play Audio</string>
+    <string name="read_book">Read Book</string>
+    <string name="summary">Summary</string>
+    <string name="long_text_example">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+        Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+        Mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+        Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt.
+        Velit officia consequat duis enim velit mollit.
+        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+        Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</string>
 </resources>
