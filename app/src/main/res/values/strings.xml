@@ -21,4 +21,8 @@
         Velit officia consequat duis enim velit mollit.
         Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
         Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</string>
+    <string name="volume_icon">Volume icon</string>
+    <string name="rewind_icon">Rewind icon</string>
+    <string name="play_icon">Play icon</string>
+    <string name="skip_forward_icon">Skip forward icon</string>
 </resources>

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentBookDetailsBinding
 
 
