@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentBookDetailsBinding
@@ -29,6 +30,36 @@ class BookDetailsFragment : Fragment() {
         binding.lifecycleOwner = this
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
+        setBackButtonOnClickListener()
+        setPlayAudioButtonOnClickListener()
+        setReadBookButtonOnClickListener()
+    }
+
+    private fun setBackButtonOnClickListener() {
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun setPlayAudioButtonOnClickListener() {
+        binding.playAudioButton.setOnClickListener {
+            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToAudioPlayerFragment())
+        }
+    }
+
+    private fun setReadBookButtonOnClickListener() {
+        binding.readBookButton.setOnClickListener {
+            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToReadModeFragment())
+        }
     }
 
 

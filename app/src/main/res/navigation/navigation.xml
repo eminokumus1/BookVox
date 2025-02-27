@@ -37,5 +37,21 @@
         <argument
             android:name="book"
             app:argType="com.eminokumus.bookvox.model.Book" />
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_audioPlayerFragment"
+            app:destination="@id/audioPlayerFragment" />
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_readModeFragment"
+            app:destination="@id/readModeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/audioPlayerFragment"
+        android:name="com.eminokumus.bookvox.audioplayer.AudioPlayerFragment"
+        android:label="fragment_audio_player"
+        tools:layout="@layout/fragment_audio_player" />
+    <fragment
+        android:id="@+id/readModeFragment"
+        android:name="com.eminokumus.bookvox.readmode.ReadModeFragment"
+        android:label="fragment_read_mode"
+        tools:layout="@layout/fragment_read_mode" />
 </navigation>

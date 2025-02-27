@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".bookdetails.BookDetailsFragment">
 
-    <!-- TODO: Convert example datas from android to tools -->
 
     <data>
 
