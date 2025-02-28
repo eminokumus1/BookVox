@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.databinding.FragmentBookDetailsBinding
@@ -12,7 +13,7 @@ import com.eminokumus.bookvox.databinding.FragmentBookDetailsBinding
 
 class BookDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
-    private lateinit var viewModel: BookDetailsViewModel
+    private val viewModel: BookDetailsViewModel by viewModels()
 
     val args: BookDetailsFragmentArgs by navArgs()
 
@@ -22,7 +23,6 @@ class BookDetailsFragment : Fragment() {
     ): View {
         binding = FragmentBookDetailsBinding.inflate(layoutInflater, container, false)
 
-        viewModel = BookDetailsViewModel()
         viewModel.setBook(args.book)
 
         binding.viewModel = viewModel
@@ -51,7 +51,7 @@ class BookDetailsFragment : Fragment() {
 
     private fun setPlayAudioButtonOnClickListener() {
         binding.playAudioButton.setOnClickListener {
-            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToAudioPlayerFragment())
+            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToAudioPlayerFragment(args.book))
         }
     }
 

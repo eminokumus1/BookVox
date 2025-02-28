@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.eminokumus.bookvox.Constants
@@ -16,7 +17,7 @@ import com.eminokumus.bookvox.model.Book
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
-    private lateinit var viewModel: HomeViewModel
+    private  val viewModel: HomeViewModel by viewModels()
 
     private val homeAdapter = HomeAdapter(ScreenType.HOME).also {
         it.onBookItemClickListener = object : OnBookItemClickListener{
@@ -32,7 +33,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        viewModel = HomeViewModel()
 
         return binding.root
     }

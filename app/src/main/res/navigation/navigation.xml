@@ -48,7 +48,11 @@
         android:id="@+id/audioPlayerFragment"
         android:name="com.eminokumus.bookvox.audioplayer.AudioPlayerFragment"
         android:label="fragment_audio_player"
-        tools:layout="@layout/fragment_audio_player" />
+        tools:layout="@layout/fragment_audio_player" >
+        <argument
+            android:name="book"
+            app:argType="com.eminokumus.bookvox.model.Book" />
+    </fragment>
     <fragment
         android:id="@+id/readModeFragment"
         android:name="com.eminokumus.bookvox.readmode.ReadModeFragment"

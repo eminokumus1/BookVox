@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.ScreenType
@@ -17,7 +18,7 @@ import com.eminokumus.bookvox.model.Book
 
 class SearchFragment : Fragment() {
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: SearchViewModel
+    private  val viewModel: SearchViewModel by viewModels()
 
     private val homeAdapter = HomeAdapter(ScreenType.SEARCH).also {
         it.onBookItemClickListener = object : OnBookItemClickListener {
@@ -36,7 +37,6 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
-        viewModel = SearchViewModel()
 
 
         return binding.root
