@@ -15,7 +15,7 @@ class BookDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
     private val viewModel: BookDetailsViewModel by viewModels()
 
-    val args: BookDetailsFragmentArgs by navArgs()
+    private val args: BookDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

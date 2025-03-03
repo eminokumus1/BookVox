@@ -11,7 +11,7 @@ object Constants {
             author = "George Orwell",
             imageUrl = "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg",
             summary = "Baskıcı bir rejim altında yaşayan Winston Smith’in hikayesi.",
-            audioUrl = "https://example.com/audio/1984.mp3",
+            audioUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
             content = "Bu, 1984 kitabının tam içeriğidir. Lorem ipsum dolor sit amet..."
         ),
         Book(
