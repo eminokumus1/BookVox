@@ -16,6 +16,9 @@ class AudioPlayerViewModel: ViewModel() {
     private val _currentTimeInMinutes = MutableLiveData<String>()
     val currentTimeInMinutes: LiveData<String> get() = _currentTimeInMinutes
 
+    private val _currentTimeInMillis = MutableLiveData<Long>()
+    val currentTimeInMillis: LiveData<Long> get() = _currentTimeInMillis
+
     fun setBook(book: Book){
         _book.value = book
     }
@@ -36,7 +39,14 @@ class AudioPlayerViewModel: ViewModel() {
         return num/1000
     }
 
+    fun secondsToMillis(num: Int): Long{
+        return (num * 1000).toLong()
+    }
+
     fun updateCurrentTime(millis: Long){
         _currentTimeInMinutes.value = millisToMinutesString(millis)
+        _currentTimeInMillis.value = millis
     }
+
+
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.SeekBar
 import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -15,7 +16,6 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentAudioPlayerBinding
-import kotlinx.coroutines.coroutineScope
 import java.util.Timer
 import java.util.TimerTask
 
@@ -28,17 +28,20 @@ class AudioPlayerFragment : Fragment() {
 
     private val timer = Timer()
 
+    private lateinit var audioPlayer: ExoPlayer
+
     private val handler = Handler(Looper.getMainLooper())
     private val updateRunnable = object : Runnable {
         override fun run() {
             if (audioPlayer.isPlaying) {
                 viewModel.updateCurrentTime(audioPlayer.currentPosition)
+                binding.audioProgressSeekBar.progress =
+                    viewModel.millisToSeconds(audioPlayer.currentPosition).toInt()
                 handler.postDelayed(this, 1000)
             }
         }
     }
 
-    private lateinit var audioPlayer: ExoPlayer
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,7 +66,24 @@ class AudioPlayerFragment : Fragment() {
         setOnClickListeners()
         observeViewModel()
 
+        binding.audioProgressSeekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val progressInMillis = viewModel.secondsToMillis(progress)
+                viewModel.updateCurrentTime(progressInMillis)
 
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                audioPlayer.pause()
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                audioPlayer.play()
+                viewModel.currentTimeInMillis.value?.let { audioPlayer.seekTo(it) }
+            }
+
+        })
     }
 
     private fun setOnClickListeners() {
@@ -152,10 +172,10 @@ class AudioPlayerFragment : Fragment() {
         }
     }
 
-    private fun addListenerToAudioPlayer(){
-        audioPlayer.addListener(object: Player.Listener {
+    private fun addListenerToAudioPlayer() {
+        audioPlayer.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                if (playbackState == Player.STATE_READY ) {
+                if (playbackState == Player.STATE_READY) {
                     viewModel.setAudioDuration(audioPlayer.duration)
                     setAudioSeekBarMaxWithSeconds(viewModel.millisToSeconds(audioPlayer.duration))
                     setAudioSeekBarProgress(audioPlayer.currentPosition)
@@ -164,9 +184,9 @@ class AudioPlayerFragment : Fragment() {
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
-                if (isPlaying){
+                if (isPlaying) {
                     handler.post(updateRunnable)
-                }else{
+                } else {
                     handler.removeCallbacks(updateRunnable)
                 }
             }
@@ -180,7 +200,7 @@ class AudioPlayerFragment : Fragment() {
 
     private fun setAudioSeekBarMaxWithSeconds(seconds: Long) {
         binding.audioProgressSeekBar.max =
-            viewModel.millisToSeconds(seconds).toInt()
+            seconds.toInt()
     }
 }
 
