@@ -1,5 +1,7 @@
 package com.eminokumus.bookvox.audioplayer
 
+import android.content.Context
+import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,10 +16,9 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.navArgs
+import com.eminokumus.bookvox.Constants
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentAudioPlayerBinding
-import java.util.Timer
-import java.util.TimerTask
 
 
 class AudioPlayerFragment : Fragment() {
@@ -25,8 +26,6 @@ class AudioPlayerFragment : Fragment() {
     private val viewModel: AudioPlayerViewModel by viewModels()
 
     private val args: AudioPlayerFragmentArgs by navArgs()
-
-    private val timer = Timer()
 
     private lateinit var audioPlayer: ExoPlayer
 
@@ -66,31 +65,16 @@ class AudioPlayerFragment : Fragment() {
         setOnClickListeners()
         observeViewModel()
 
-        binding.audioProgressSeekBar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                val progressInMillis = viewModel.secondsToMillis(progress)
-                viewModel.updateCurrentTime(progressInMillis)
+        addListenerToAudioProgressSeekBar()
+        changeVolumeWithVolumeSeekBar()
 
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                audioPlayer.pause()
-            }
-
-            override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                audioPlayer.play()
-                viewModel.currentTimeInMillis.value?.let { audioPlayer.seekTo(it) }
-            }
-
-        })
     }
 
     private fun setOnClickListeners() {
         setVolumeButtonOnClickListener()
         setPlayButtonOnClickListener()
-        setSkipForwardButtonOnClickListener()
-        setRewindButtonOnClickListener()
+        setNextButtonOnClickListener()
+        setPreviousButtonOnClickListener()
     }
 
     private fun setVolumeButtonOnClickListener() {
@@ -98,11 +82,7 @@ class AudioPlayerFragment : Fragment() {
             if (binding.volumeSeekBar.visibility == View.INVISIBLE) {
                 binding.volumeSeekBar.visibility = View.VISIBLE
 
-                timer.schedule(object : TimerTask() {
-                    override fun run() {
-                        binding.volumeSeekBar.visibility = View.INVISIBLE
-                    }
-                }, 3000)
+
             } else {
                 binding.volumeSeekBar.visibility = View.INVISIBLE
             }
@@ -124,34 +104,26 @@ class AudioPlayerFragment : Fragment() {
             }
         }
     }
+    private fun setNextButtonOnClickListener() {
+        binding.nextImageButton.setOnClickListener {
 
-    private fun setSkipForwardButtonOnClickListener() {
-        binding.skipForwardImageButton.setOnClickListener {
-            val newCurrentTime = audioPlayer.currentPosition + 15000
-            if (newCurrentTime < audioPlayer.duration) {
-                audioPlayer.seekTo(newCurrentTime)
-                setAudioSeekBarProgress(newCurrentTime)
-            } else {
-                audioPlayer.seekTo(audioPlayer.duration)
-                audioPlayer.stop()
-                setAudioSeekBarProgress(audioPlayer.duration)
+            val newBookIndex = viewModel.book.value?.id?.plus(1) ?: -1
+            if(newBookIndex in 0 until Constants.bookList.size){
+                val newBook = Constants.bookList[newBookIndex]
+                viewModel.setBook(newBook)
             }
         }
+
+
     }
 
-    private fun setRewindButtonOnClickListener() {
-        binding.rewindImageButton.setOnClickListener {
-            val newCurrentTime = audioPlayer.currentPosition - 15000
-            if (newCurrentTime > 0) {
-                audioPlayer.seekTo(newCurrentTime)
-                setAudioSeekBarProgress(newCurrentTime)
-            } else {
-                audioPlayer.seekTo(0)
-                setAudioSeekBarProgress(0)
-
-
+    private fun setPreviousButtonOnClickListener() {
+        binding.previousImageButton.setOnClickListener {
+            val newBookIndex = viewModel.book.value?.id?.plus(-1) ?: -1
+            if(newBookIndex in 0 until Constants.bookList.size){
+                val newBook = Constants.bookList[newBookIndex]
+                viewModel.setBook(newBook)
             }
-
         }
     }
 
@@ -201,6 +173,51 @@ class AudioPlayerFragment : Fragment() {
     private fun setAudioSeekBarMaxWithSeconds(seconds: Long) {
         binding.audioProgressSeekBar.max =
             seconds.toInt()
+    }
+
+
+    private fun addListenerToAudioProgressSeekBar() {
+        binding.audioProgressSeekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val progressInMillis = viewModel.secondsToMillis(progress)
+                viewModel.updateCurrentTime(progressInMillis)
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                audioPlayer.pause()
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                audioPlayer.play()
+                viewModel.currentTimeInMillis.value?.let { audioPlayer.seekTo(it) }
+            }
+
+        })
+    }
+
+    private fun changeVolumeWithVolumeSeekBar() {
+        val audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
+        val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        binding.volumeSeekBar.max = maxVolume
+
+        val currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+        binding.volumeSeekBar.progress = currVolume
+
+        binding.volumeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, i, 0)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+                binding.volumeSeekBar.visibility = View.INVISIBLE
+            }
+        })
     }
 }
 

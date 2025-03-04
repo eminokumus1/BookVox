@@ -90,17 +90,17 @@
 
         <SeekBar
             android:id="@+id/audioProgressSeekBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="40dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:progressTint="@color/primary_purple"
-            android:thumb="@drawable/custom_thumb"
             android:splitTrack="false"
+            android:thumb="@drawable/custom_thumb"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bookAuthorText" />
@@ -110,8 +110,8 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:layout_margin="8dp"
-            android:textColor="@color/light_purple_text"
             android:text="@{viewModel.currentTimeInMinutes}"
+            android:textColor="@color/light_purple_text"
             android:textSize="11sp"
             app:layout_constraintStart_toStartOf="@id/audioProgressSeekBar"
             app:layout_constraintTop_toBottomOf="@id/audioProgressSeekBar"
@@ -122,9 +122,9 @@
             android:layout_width="wrap_content"
             android:layout_height="16dp"
             android:layout_margin="8dp"
+            android:text="@{viewModel.audioDurationInMinutes}"
             android:textColor="@color/light_purple_text"
             android:textSize="11sp"
-            android:text="@{viewModel.audioDurationInMinutes}"
             app:layout_constraintEnd_toEndOf="@id/audioProgressSeekBar"
             app:layout_constraintTop_toBottomOf="@id/audioProgressSeekBar"
             tools:text="47.32" />
@@ -144,13 +144,12 @@
 
         <SeekBar
             android:id="@+id/volumeSeekBar"
-            android:layout_width="80dp"
-            android:layout_height="20dp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-
-            android:layout_marginBottom="20dp"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="#809D9B9B"
             android:progressTint="@color/primary_purple"
-            android:rotation="270"
             android:thumb="@drawable/custom_thumb"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@id/volumeImageButton"
@@ -158,7 +157,7 @@
             app:layout_constraintStart_toStartOf="@id/volumeImageButton" />
 
         <ImageButton
-            android:id="@+id/rewindImageButton"
+            android:id="@+id/previousImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -183,7 +182,7 @@
             app:layout_constraintTop_toBottomOf="@id/currentTimeText" />
 
         <ImageButton
-            android:id="@+id/skipForwardImageButton"
+            android:id="@+id/nextImageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -200,7 +199,7 @@
             android:layout_height="0dp"
             android:backgroundTint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
