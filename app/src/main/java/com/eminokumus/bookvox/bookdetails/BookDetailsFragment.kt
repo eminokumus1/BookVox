@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.databinding.FragmentBookDetailsBinding
 
 
@@ -51,12 +52,14 @@ class BookDetailsFragment : Fragment() {
 
     private fun setPlayAudioButtonOnClickListener() {
         binding.playAudioButton.setOnClickListener {
+            (activity as MainActivity).hideBottomNavBar()
             findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToAudioPlayerFragment(args.book))
         }
     }
 
     private fun setReadBookButtonOnClickListener() {
         binding.readBookButton.setOnClickListener {
+            (activity as MainActivity).hideBottomNavBar()
             findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToReadModeFragment())
         }
     }

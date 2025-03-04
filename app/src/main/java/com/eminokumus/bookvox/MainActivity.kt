@@ -2,6 +2,7 @@ package com.eminokumus.bookvox
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -22,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottombar.setupWithNavController(navController)
         bottomNavItemChangeListener(binding.bottombar, navController)
+
+
     }
 
     private fun bottomNavItemChangeListener(
@@ -39,5 +42,12 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    fun hideBottomNavBar(){
+        binding.bottombar.visibility = View.GONE
+    }
+    fun displayBottomNavBar(){
+        binding.bottombar.visibility = View.VISIBLE
     }
 }

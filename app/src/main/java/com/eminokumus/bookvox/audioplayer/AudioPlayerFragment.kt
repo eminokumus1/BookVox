@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.SeekBar
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -18,8 +19,10 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.Constants
+import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentAudioPlayerBinding
+import kotlinx.coroutines.Dispatchers
 
 
 class AudioPlayerFragment : Fragment() {
@@ -68,6 +71,8 @@ class AudioPlayerFragment : Fragment() {
 
         addListenerToAudioProgressSeekBar()
         changeVolumeWithVolumeSeekBar()
+
+
 
     }
 
@@ -131,8 +136,16 @@ class AudioPlayerFragment : Fragment() {
 
     private fun setBackButtonOnClickListener(){
         binding.backButton.setOnClickListener {
+            (activity as MainActivity).displayBottomNavBar()
             findNavController().popBackStack()
         }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                (activity as MainActivity).displayBottomNavBar()
+                findNavController().popBackStack()
+
+            }
+        })
     }
 
     private fun observeViewModel() {
