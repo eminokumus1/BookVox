@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.eminokumus.bookvox.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/searchFragment"
         android:name="com.eminokumus.bookvox.search.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -33,31 +33,33 @@
         android:id="@+id/bookDetailsFragment"
         android:name="com.eminokumus.bookvox.bookdetails.BookDetailsFragment"
         android:label="fragment_book_details"
-        tools:layout="@layout/fragment_book_details" >
+        tools:layout="@layout/fragment_book_details">
         <argument
             android:name="book"
             app:argType="com.eminokumus.bookvox.model.Book" />
         <action
             android:id="@+id/action_bookDetailsFragment_to_audioPlayerFragment"
-            app:destination="@id/audioPlayerFragment"
-            app:enterAnim="@anim/slide_in_up"
-            app:popExitAnim="@anim/slide_out_down" />
+            app:destination="@id/audioPlayerFragment" />
         <action
             android:id="@+id/action_bookDetailsFragment_to_readModeFragment"
             app:destination="@id/readModeFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/audioPlayerFragment"
         android:name="com.eminokumus.bookvox.audioplayer.AudioPlayerFragment"
         android:label="fragment_audio_player"
-        tools:layout="@layout/fragment_audio_player" >
+        tools:layout="@layout/fragment_audio_player">
         <argument
             android:name="book"
             app:argType="com.eminokumus.bookvox.model.Book" />
-    </fragment>
-    <fragment
+    </dialog>
+    <dialog
         android:id="@+id/readModeFragment"
         android:name="com.eminokumus.bookvox.readmode.ReadModeFragment"
         android:label="fragment_read_mode"
-        tools:layout="@layout/fragment_read_mode" />
+        tools:layout="@layout/fragment_read_mode">
+        <argument
+            android:name="book"
+            app:argType="com.eminokumus.bookvox.model.Book" />
+    </dialog>
 </navigation>

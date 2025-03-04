@@ -52,15 +52,13 @@ class BookDetailsFragment : Fragment() {
 
     private fun setPlayAudioButtonOnClickListener() {
         binding.playAudioButton.setOnClickListener {
-            (activity as MainActivity).hideBottomNavBar()
             findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToAudioPlayerFragment(args.book))
         }
     }
 
     private fun setReadBookButtonOnClickListener() {
         binding.readBookButton.setOnClickListener {
-            (activity as MainActivity).hideBottomNavBar()
-            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToReadModeFragment())
+            findNavController().navigate(BookDetailsFragmentDirections.actionBookDetailsFragmentToReadModeFragment(args.book))
         }
     }
 

@@ -44,10 +44,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun hideBottomNavBar(){
-        binding.bottombar.visibility = View.GONE
-    }
-    fun displayBottomNavBar(){
-        binding.bottombar.visibility = View.VISIBLE
-    }
 }

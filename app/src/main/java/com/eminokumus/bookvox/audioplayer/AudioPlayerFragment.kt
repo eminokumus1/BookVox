@@ -1,11 +1,11 @@
 package com.eminokumus.bookvox.audioplayer
 
 import android.content.Context
+import android.content.res.Resources
 import android.media.AudioManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,13 +19,14 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.Constants
-import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.FragmentAudioPlayerBinding
-import kotlinx.coroutines.Dispatchers
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
-class AudioPlayerFragment : Fragment() {
+class AudioPlayerFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentAudioPlayerBinding
     private val viewModel: AudioPlayerViewModel by viewModels()
 
@@ -60,6 +61,8 @@ class AudioPlayerFragment : Fragment() {
 
         binding.audioPlayer.player = audioPlayer
 
+
+
         return binding.root
     }
 
@@ -72,8 +75,21 @@ class AudioPlayerFragment : Fragment() {
         addListenerToAudioProgressSeekBar()
         changeVolumeWithVolumeSeekBar()
 
+        makeBottomSheetFullscreen()
 
+    }
 
+    private fun makeBottomSheetFullscreen() {
+        dialog?.setOnShowListener { dialog ->
+            val bottomSheetDialog = dialog as BottomSheetDialog
+            val bottomSheet =
+                bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val behavior = BottomSheetBehavior.from(it)
+                behavior.state = BottomSheetBehavior.STATE_EXPANDED
+                behavior.peekHeight = Resources.getSystem().displayMetrics.heightPixels
+            }
+        }
     }
 
     private fun setOnClickListeners() {
@@ -136,12 +152,10 @@ class AudioPlayerFragment : Fragment() {
 
     private fun setBackButtonOnClickListener(){
         binding.backButton.setOnClickListener {
-            (activity as MainActivity).displayBottomNavBar()
             findNavController().popBackStack()
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                (activity as MainActivity).displayBottomNavBar()
                 findNavController().popBackStack()
 
             }
