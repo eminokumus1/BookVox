@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.Constants
 import com.eminokumus.bookvox.R
@@ -75,6 +76,7 @@ class AudioPlayerFragment : Fragment() {
         setPlayButtonOnClickListener()
         setNextButtonOnClickListener()
         setPreviousButtonOnClickListener()
+        setBackButtonOnClickListener()
     }
 
     private fun setVolumeButtonOnClickListener() {
@@ -124,6 +126,12 @@ class AudioPlayerFragment : Fragment() {
                 val newBook = Constants.bookList[newBookIndex]
                 viewModel.setBook(newBook)
             }
+        }
+    }
+
+    private fun setBackButtonOnClickListener(){
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
