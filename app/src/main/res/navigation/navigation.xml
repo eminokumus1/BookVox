@@ -52,6 +52,11 @@
         <argument
             android:name="book"
             app:argType="com.eminokumus.bookvox.model.Book" />
+        <action
+            android:id="@+id/action_audioPlayerFragment_to_bookDetailsFragment"
+            app:destination="@id/bookDetailsFragment"
+            app:popUpTo="@id/bookDetailsFragment"
+            app:popUpToInclusive="true" />
     </dialog>
     <dialog
         android:id="@+id/readModeFragment"

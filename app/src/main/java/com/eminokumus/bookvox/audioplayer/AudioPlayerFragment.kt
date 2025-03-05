@@ -3,6 +3,7 @@ package com.eminokumus.bookvox.audioplayer
 import android.content.Context
 import android.content.res.Resources
 import android.media.AudioManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.SeekBar
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
@@ -131,7 +133,7 @@ class AudioPlayerFragment : BottomSheetDialogFragment() {
         binding.nextImageButton.setOnClickListener {
 
             val newBookIndex = viewModel.book.value?.id?.plus(1) ?: -1
-            if(newBookIndex in 0 until Constants.bookList.size){
+            if (newBookIndex in 0 until Constants.bookList.size) {
                 val newBook = Constants.bookList[newBookIndex]
                 viewModel.setBook(newBook)
             }
@@ -143,23 +145,37 @@ class AudioPlayerFragment : BottomSheetDialogFragment() {
     private fun setPreviousButtonOnClickListener() {
         binding.previousImageButton.setOnClickListener {
             val newBookIndex = viewModel.book.value?.id?.plus(-1) ?: -1
-            if(newBookIndex in 0 until Constants.bookList.size){
+            if (newBookIndex in 0 until Constants.bookList.size) {
                 val newBook = Constants.bookList[newBookIndex]
                 viewModel.setBook(newBook)
             }
         }
     }
 
-    private fun setBackButtonOnClickListener(){
+    private fun setBackButtonOnClickListener() {
         binding.backButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    navigateBackWithUpdatedBook()
+                }
+            })
+    }
+
+    private fun navigateBackWithUpdatedBook() {
+        if (viewModel.book.value != null) {
+            findNavController().navigate(
+                AudioPlayerFragmentDirections.actionAudioPlayerFragmentToBookDetailsFragment(
+                    viewModel.book.value!!
+                )
+            )
+        } else {
             findNavController().popBackStack()
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
-
-            }
-        })
     }
 
     private fun observeViewModel() {
