@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.eminokumus.bookvox.MainActivity
@@ -17,6 +18,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ReadModeFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentReadModeBinding
+    private val viewModel: ReadModeViewModel by viewModels()
 
     private var isFullScreen = false
 
@@ -25,8 +27,13 @@ class ReadModeFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentReadModeBinding.inflate(layoutInflater, container, false)
+
+        viewModel.setBook(args.book)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 
@@ -50,7 +57,7 @@ class ReadModeFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun setOnClickListeners(){
+    private fun setOnClickListeners() {
         setBackButtonOnClickListener()
         setRootOnClickListener()
     }
@@ -59,12 +66,14 @@ class ReadModeFragment : BottomSheetDialogFragment() {
         binding.backButton.setOnClickListener {
             findNavController().popBackStack()
         }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    findNavController().popBackStack()
 
-            }
-        })
+                }
+            })
     }
 
     private fun setRootOnClickListener() {
@@ -84,8 +93,10 @@ class ReadModeFragment : BottomSheetDialogFragment() {
     }
 
     private fun hideBars() {
-        binding.appBarLayout.animate().translationY(-binding.appBarLayout.height.toFloat()).setDuration(200).start()
-        binding.bottombar.animate().translationY(binding.bottombar.height.toFloat()).setDuration(200).start()
+        binding.appBarLayout.animate().translationY(-binding.appBarLayout.height.toFloat())
+            .setDuration(200).start()
+        binding.bottombar.animate().translationY(binding.bottombar.height.toFloat())
+            .setDuration(200).start()
 
     }
 

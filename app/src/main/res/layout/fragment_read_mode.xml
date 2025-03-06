@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:background="@color/white">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.eminokumus.bookvox.readmode.ReadModeViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <!-- Toolbar inside AppBarLayout (Slides up automatically) -->
     <com.google.android.material.appbar.AppBarLayout
@@ -47,7 +55,7 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/poppins_medium"
                     android:maxLines="1"
-                    android:text="Harry Potter and the Sorcerer’s Stone"
+                    android:text="@{viewModel.book.component2()}"
                     android:textColor="@color/neutral_text"
                     android:textSize="16sp" />
 
@@ -62,6 +70,7 @@
         android:layout_height="match_parent"
         android:padding="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <TextView
             android:id="@+id/contentText"
@@ -120,3 +129,4 @@
         </RelativeLayout>
     </com.google.android.material.bottomappbar.BottomAppBar>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
