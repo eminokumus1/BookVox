@@ -1,6 +1,7 @@
 package com.eminokumus.bookvox.audioplayer
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.Resources
 import android.media.AudioManager
 import android.os.Build
@@ -78,8 +79,13 @@ class AudioPlayerFragment : BottomSheetDialogFragment() {
         changeVolumeWithVolumeSeekBar()
 
         makeBottomSheetFullscreen()
-
     }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        navigateBackWithUpdatedBook()
+    }
+
 
     private fun makeBottomSheetFullscreen() {
         dialog?.setOnShowListener { dialog ->
