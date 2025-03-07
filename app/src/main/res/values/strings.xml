@@ -61,4 +61,17 @@
     <string name="rewind_icon">Rewind icon</string>
     <string name="play_icon">Play icon</string>
     <string name="skip_forward_icon">Skip forward icon</string>
+    <string name="logo_icon">Logo icon</string>
+    <string name="email">Email</string>
+    <string name="login_greeting">Login to Your Account</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Remember me</string>
+    <string name="login">Login</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="or_login_with">Or login with</string>
+    <string name="google_icon">Google icon</string>
+    <string name="facebook_icon">Facebook icon</string>
+    <string name="twitter_icon">Twitter icon</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="register">Register</string>
 </resources>

@@ -5,6 +5,8 @@
     <color name="light_grey">#CCEFEFF4</color>
     <color name="grey">#9292A2</color>
     <color name="neutral_grey">#6A6A8B</color>
+    <color name="grey_edit_text">#F5F5FA</color>
+    <color name="grey_hint_text">#BEBECC</color>
 
     <color name="primary_purple">#4838d1</color>
     <color name="light_purple">#DDD7FC</color>
