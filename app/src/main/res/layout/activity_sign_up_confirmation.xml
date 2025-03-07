@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".signup.SignUpConfirmationActivity">
+
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/logo_icon"
+        android:src="@drawable/ic_bookvox_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/confirmationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins"
+        android:padding="4dp"
+        android:text="@string/confirmation_code"
+        android:textColor="@color/neutral_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoImage" />
+
+    <TextView
+        android:id="@+id/enterConfirmationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="@font/poppins"
+        android:padding="4dp"
+        android:text="@string/enter_the_confirmation_code"
+        android:textColor="@color/neutral_text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirmationText" />
+
+    <EditText
+        android:id="@+id/confirmationCodeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/bg_borderless_grey"
+        android:hint="@string/confirmation_code"
+        android:inputType="textEmailAddress"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColorHint="@color/grey_hint_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/enterConfirmationText" />
+
+    <TextView
+        android:id="@+id/didntReceiveCodeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins"
+        android:padding="4dp"
+        android:text="@string/didn_t_receive_the_code"
+        android:textColor="@color/neutral_text"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/confirmationCodeEditText"
+        app:layout_constraintTop_toBottomOf="@id/confirmationCodeEditText" />
+
+    <TextView
+        android:id="@+id/resendText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:padding="4dp"
+        android:text="@string/resend"
+        android:textColor="@color/orange"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/didntReceiveCodeText"
+        app:layout_constraintTop_toTopOf="@id/didntReceiveCodeText" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/bg_primary_purple"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/register"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/didntReceiveCodeText" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/bg_primary_purple_borderline"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/cancel"
+        android:textColor="@color/primary_purple"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/submitButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
