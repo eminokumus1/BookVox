@@ -70,6 +70,6 @@ class HomeAdapter(val screenType: ScreenType) : RecyclerView.Adapter<HomeAdapter
 
 }
 
-interface OnBookItemClickListener {
+fun interface OnBookItemClickListener {
     fun onItemClick(book: Book)
 }

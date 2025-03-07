@@ -17,14 +17,13 @@ import com.eminokumus.bookvox.model.Book
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
-    private  val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     private val homeAdapter = HomeAdapter(ScreenType.HOME).also {
-        it.onBookItemClickListener = object : OnBookItemClickListener{
-            override fun onItemClick(book: Book) {
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBookDetailsFragment(book))
-            }
-
+        it.onBookItemClickListener = OnBookItemClickListener { book ->
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToBookDetailsFragment(book)
+            )
         }
     }
 
@@ -46,8 +45,8 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun observeViewModel(){
-        viewModel.bookList.observe(viewLifecycleOwner){
+    private fun observeViewModel() {
+        viewModel.bookList.observe(viewLifecycleOwner) {
             homeAdapter.bookList = it.toMutableList()
         }
     }
