@@ -3,6 +3,7 @@ package com.eminokumus.bookvox.audioplayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.eminokumus.bookvox.model.Book
 import kotlin.text.StringBuilder
 
@@ -10,8 +11,12 @@ class AudioPlayerViewModel : ViewModel() {
     private val _book = MutableLiveData<Book>()
     val book: LiveData<Book> get() = _book
 
-    private val _audioDurationInMinutes = MutableLiveData<String>()
-    val audioDurationInMinutes: LiveData<String> get() = _audioDurationInMinutes
+    private val _audioDurationInSeconds = MutableLiveData<Int>()
+    val audioDurationInSeconds: LiveData<Int> get() = _audioDurationInSeconds
+
+    val audioDurationInMinutes: LiveData<String> = _audioDurationInSeconds.map { seconds->
+        millisToMinutesString(secondsToMillis(seconds))
+    }
 
     private val _currentTimeInMinutes = MutableLiveData<String>()
     val currentTimeInMinutes: LiveData<String> get() = _currentTimeInMinutes
@@ -19,12 +24,17 @@ class AudioPlayerViewModel : ViewModel() {
     private val _currentTimeInMillis = MutableLiveData<Long>()
     val currentTimeInMillis: LiveData<Long> get() = _currentTimeInMillis
 
+    val currentTimeInSeconds: LiveData<Int> = _currentTimeInMillis.map { millis ->
+        millisToSeconds(millis).toInt()
+    }
+
+
     fun setBook(book: Book) {
         _book.value = book
     }
 
     fun setAudioDuration(durationInMillis: Long) {
-        _audioDurationInMinutes.value = millisToMinutesString(durationInMillis)
+        _audioDurationInSeconds.value = millisToSeconds(durationInMillis).toInt()
     }
 
     private fun millisToMinutesString(millis: Long): String {

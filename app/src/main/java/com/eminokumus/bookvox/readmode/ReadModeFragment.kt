@@ -9,7 +9,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.databinding.FragmentReadModeBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -27,23 +26,21 @@ class ReadModeFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentReadModeBinding.inflate(layoutInflater, container, false)
+    ): View =
+        FragmentReadModeBinding.inflate(layoutInflater, container, false).also { binding = it }.root
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.setBook(args.book)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         toggleBarsVisibilityWhenScrolled()
 
         setOnClickListeners()
-        makeBottomSheetFullscreen()
+        openBottomSheet()
 
     }
 
@@ -105,7 +102,7 @@ class ReadModeFragment : BottomSheetDialogFragment() {
         binding.bottombar.animate().translationY(0f).setDuration(200).start()
     }
 
-    private fun makeBottomSheetFullscreen() {
+    private fun openBottomSheet() {
         dialog?.setOnShowListener { dialog ->
             val bottomSheetDialog = dialog as BottomSheetDialog
             val bottomSheet =
