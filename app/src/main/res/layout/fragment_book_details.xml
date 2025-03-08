@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".bookdetails.BookDetailsFragment">
+
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.eminokumus.bookvox.bookdetails.BookDetailsViewModel" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:backgroundTint="@color/white"
+                android:contentDescription="@string/back_button_description"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/headerText"
+                android:layout_width="260dp"
+                android:layout_height="24dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_medium"
+                android:maxLines="1"
+                android:text="@{viewModel.book.component2()}"
+                android:textColor="@color/neutral_text"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/backButton"
+                app:layout_constraintStart_toEndOf="@id/backButton"
+                app:layout_constraintTop_toTopOf="@id/backButton"
+                tools:text="Harry Potter and the Prisoner of Azkaban" />
+
+            <ImageView
+                android:id="@+id/bookImage"
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_marginTop="40dp"
+                app:imageUrl="@{viewModel.book.component4()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/backButton"
+                tools:src="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="40dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/poppins_semibold"
+                android:maxLines="1"
+                android:text="@{viewModel.book.component2()}"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bookImage"
+                tools:text="Harry Potter and the Prisoner of Azkaban" />
+
+            <TextView
+                android:id="@+id/bookAuthorText"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="@{viewModel.book.component3()}"
+                android:textColor="@color/grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleText"
+                tools:text="J.K. Rowling" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/playAudioButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_primary_purple"
+                android:text="@string/play_audio"
+                app:backgroundTint="@null"
+                app:icon="@drawable/ic_play_white"
+                app:layout_constraintEnd_toStartOf="@id/readBookButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bookAuthorText" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/readBookButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/bg_primary_purple_borderline"
+                android:text="@string/read_book"
+                android:textColor="@color/primary_purple"
+                app:backgroundTint="@null"
+                app:icon="@drawable/ic_document"
+                app:iconTint="@color/primary_purple"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/playAudioButton"
+                app:layout_constraintTop_toTopOf="@id/playAudioButton" />
+
+            <TextView
+                android:id="@+id/summaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="@string/summary"
+                android:textColor="@color/neutral_text"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/playAudioButton" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/poppins"
+                android:text="@{viewModel.book.component5()}"
+                tools:text="@string/long_text_example"
+                android:textColor="@color/neutral_grey"
+                app:layout_constraintStart_toStartOf="@id/summaryText"
+                app:layout_constraintTop_toBottomOf="@id/summaryText" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

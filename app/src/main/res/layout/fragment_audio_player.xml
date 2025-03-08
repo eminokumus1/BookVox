@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".audioplayer.AudioPlayerFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.eminokumus.bookvox.audioplayer.AudioPlayerViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/white"
+            android:contentDescription="@string/back_button_description"
+            android:src="@drawable/ic_arrow_down"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/headerText"
+            android:layout_width="260dp"
+            android:layout_height="24dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:text="@{viewModel.book.component2()}"
+            android:textColor="@color/neutral_text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@id/backButton"
+            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="@id/backButton"
+            tools:text="Harry Potter and the Prisoner of Azkaban" />
+
+
+        <ImageView
+            android:id="@+id/bookImage"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_marginTop="40dp"
+            android:contentDescription="@string/book_image_description"
+            app:imageUrl="@{viewModel.book.component4()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/backButton"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_semibold"
+
+            android:maxLines="1"
+            android:text="@{viewModel.book.component2()}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookImage"
+            tools:text="Harry Potter and the Prisoner of Azkaban" />
+
+        <TextView
+            android:id="@+id/bookAuthorText"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="40dp"
+            android:fontFamily="@font/poppins_light"
+            android:text="@{viewModel.book.component3()}"
+            android:textColor="@color/grey"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleText"
+            tools:text="J.K. Rowling" />
+
+        <SeekBar
+            android:id="@+id/audioProgressSeekBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:progressTint="@color/primary_purple"
+            android:splitTrack="false"
+            android:thumb="@drawable/custom_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bookAuthorText" />
+
+        <TextView
+            android:id="@+id/currentTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:text="@{viewModel.currentTimeInMinutes}"
+            android:textColor="@color/light_purple_text"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="@id/audioProgressSeekBar"
+            app:layout_constraintTop_toBottomOf="@id/audioProgressSeekBar"
+            tools:text="12.15" />
+
+        <TextView
+            android:id="@+id/totalTimeText"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_margin="8dp"
+            android:text="@{viewModel.audioDurationInMinutes}"
+            android:textColor="@color/light_purple_text"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@id/audioProgressSeekBar"
+            app:layout_constraintTop_toBottomOf="@id/audioProgressSeekBar"
+            tools:text="47.32" />
+
+        <ImageButton
+            android:id="@+id/volumeImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/volume_icon"
+            android:padding="12dp"
+            android:src="@drawable/ic_volume"
+            app:layout_constraintBottom_toBottomOf="@id/playImageButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/playImageButton" />
+
+        <SeekBar
+            android:id="@+id/volumeSeekBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="#809D9B9B"
+            android:progressTint="@color/primary_purple"
+            android:thumb="@drawable/custom_thumb"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/volumeImageButton"
+            app:layout_constraintEnd_toEndOf="@id/volumeImageButton"
+            app:layout_constraintStart_toStartOf="@id/volumeImageButton" />
+
+        <ImageButton
+            android:id="@+id/previousImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/rewind_icon"
+            android:src="@drawable/ic_arrow_left_circle"
+            app:layout_constraintBottom_toBottomOf="@id/playImageButton"
+            app:layout_constraintEnd_toStartOf="@id/playImageButton"
+            app:layout_constraintTop_toTopOf="@id/playImageButton" />
+
+        <ImageButton
+            android:id="@+id/playImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/play_icon"
+            android:src="@drawable/ic_play_primary_purple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentTimeText" />
+
+        <ImageButton
+            android:id="@+id/nextImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/skip_forward_icon"
+            android:src="@drawable/ic_arrow_right_circle"
+            app:layout_constraintBottom_toBottomOf="@id/playImageButton"
+            app:layout_constraintStart_toEndOf="@id/playImageButton"
+            app:layout_constraintTop_toTopOf="@id/playImageButton" />
+
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/audioPlayer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
