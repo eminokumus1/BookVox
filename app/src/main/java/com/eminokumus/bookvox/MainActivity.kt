@@ -22,26 +22,8 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         binding.bottombar.setupWithNavController(navController)
-        bottomNavItemChangeListener(binding.bottombar, navController)
 
 
-    }
-
-    private fun bottomNavItemChangeListener(
-        bottombar: BottomNavigationView,
-        navController: NavController
-    ) {
-        bottombar.setOnItemSelectedListener { item ->
-            if (item.itemId != bottombar.selectedItemId) {
-                navController.popBackStack(bottombar.selectedItemId, false
-                    , saveState = false)
-                navController.navigate(item.itemId)
-            } else if (item.itemId == bottombar.selectedItemId) {
-                navController.popBackStack(item.itemId, false)
-                navController.navigate(item.itemId)
-            }
-            true
-        }
     }
 
 }
