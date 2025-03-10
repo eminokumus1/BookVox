@@ -81,4 +81,5 @@
     <string name="enter_the_confirmation_code">Enter the confirmation code we sent to <b>your@mail.com</b> </string>
     <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
     <string name="resend">Resend</string>
+    <string name="back_to_login">Back to Login</string>
 </resources>
