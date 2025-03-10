@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">BookVox</string>
+    <string name="logo"><font color="#4838d1"> <b>Book</b>Vox</font> <font color="#F77A55">.</font></string>
     <string name="book">Book</string>
     <string name="vox">Vox</string>
     <string name="dot">.</string>
@@ -84,4 +85,5 @@
     <string name="back_to_login">Back to Login</string>
     <string name="info_forget_password">Please fill email and we\'ll send you a link to get back into your account.</string>
     <string name="submit">Submit</string>
+    <string name="settings_icon">Settings icon</string>
 </resources>
