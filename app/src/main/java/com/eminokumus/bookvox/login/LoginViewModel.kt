@@ -1,9 +1,10 @@
 package com.eminokumus.bookvox.login
 
-import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.eminokumus.bookvox.extensions.isValidEmail
+import com.eminokumus.bookvox.extensions.isValidPassword
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -18,12 +19,12 @@ class LoginViewModel: ViewModel() {
     private val _isPasswordValid = MutableLiveData<Boolean>()
     val isPasswordValid: LiveData<Boolean> get() = _isPasswordValid
 
-    fun checkEmailFormat(email: String){
-        _isEmailValid.value = Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isNotEmpty()
+    fun checkEmailFormat(email: String?){
+        _isEmailValid.value = email.isValidEmail()
     }
 
-    fun checkPasswordFormat(userPassword: String){
-        _isPasswordValid.value = userPassword.length >= 6 && userPassword.isNotEmpty()
+    fun checkPasswordFormat(userPassword: String?){
+        _isPasswordValid.value = userPassword.isValidPassword()
     }
 
     fun isFirebaseAuthenticationSuccessful(email: String, password: String): Boolean{
