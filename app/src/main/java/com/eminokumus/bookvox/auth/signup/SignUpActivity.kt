@@ -1,4 +1,4 @@
-package com.eminokumus.bookvox.signup
+package com.eminokumus.bookvox.auth.signup
 
 import android.os.Build
 import android.os.Bundle

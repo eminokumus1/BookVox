@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup.SignUpConfirmationActivity">
+    tools:context=".auth.signup.SignUpConfirmationActivity">
 
     <ImageView
         android:id="@+id/logoImage"
@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@id/logoImage" />
 
     <TextView
-        android:id="@+id/enterConfirmationText"
+        android:id="@+id/infoText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -66,7 +66,7 @@
         android:textColorHint="@color/grey_hint_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/enterConfirmationText" />
+        app:layout_constraintTop_toBottomOf="@id/infoText" />
 
     <TextView
         android:id="@+id/didntReceiveCodeText"
@@ -103,7 +103,7 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/bg_primary_purple"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/register"
+        android:text="@string/submit"
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"

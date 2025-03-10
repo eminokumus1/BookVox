@@ -15,13 +15,16 @@
         android:theme="@style/Theme.BookVox"
         tools:targetApi="31">
         <activity
-            android:name=".signup.SignUpConfirmationActivity"
+            android:name=".auth.forgetpassword.ForgetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".signup.SignUpActivity"
+            android:name=".auth.signup.SignUpConfirmationActivity"
             android:exported="false" />
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".auth.signup.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".auth.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />

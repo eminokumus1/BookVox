@@ -1,4 +1,4 @@
-package com.eminokumus.bookvox.login
+package com.eminokumus.bookvox.auth.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

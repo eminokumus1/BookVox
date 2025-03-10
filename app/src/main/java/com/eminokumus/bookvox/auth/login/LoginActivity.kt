@@ -1,4 +1,4 @@
-package com.eminokumus.bookvox.login
+package com.eminokumus.bookvox.auth.login
 
 import android.content.Context
 import android.content.Intent
@@ -14,7 +14,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.databinding.ActivityLoginBinding
-import com.eminokumus.bookvox.signup.SignUpActivity
+import com.eminokumus.bookvox.auth.signup.SignUpActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
