@@ -9,7 +9,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 
     private val auth: FirebaseAuth = Firebase.auth
 
@@ -19,31 +19,28 @@ class LoginViewModel: ViewModel() {
     private val _isPasswordValid = MutableLiveData<Boolean>()
     val isPasswordValid: LiveData<Boolean> get() = _isPasswordValid
 
-    fun checkEmailFormat(email: String?){
+    private val _isLoginSuccessful = MutableLiveData<Boolean>()
+    val isLoginSuccessful: LiveData<Boolean> = _isLoginSuccessful
+
+    fun checkEmailFormat(email: String?) {
         _isEmailValid.value = email.isValidEmail()
     }
 
-    fun checkPasswordFormat(userPassword: String?){
+    fun checkPasswordFormat(userPassword: String?) {
         _isPasswordValid.value = userPassword.isValidPassword()
     }
 
-    fun isFirebaseAuthenticationSuccessful(email: String, password: String): Boolean{
-        var isLoginConfirmed = false
+    fun checkFirebaseAuthentication(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-            if(it.isSuccessful){
-                isLoginConfirmed = true
-            }else{
-                isLoginConfirmed = false
-            }
+            _isLoginSuccessful.value = it.isSuccessful
         }
-        return isLoginConfirmed
     }
 
-    fun isLoginAllowed(): Boolean{
+    fun isLoginAllowed(): Boolean {
         return isEmailValid.value == true && isPasswordValid.value == true
     }
 
-    fun isThereLoggedInUser(): Boolean{
+    fun isThereLoggedInUser(): Boolean {
         return auth.currentUser != null
     }
 }

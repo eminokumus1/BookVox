@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import com.eminokumus.bookvox.MainActivity
 import com.eminokumus.bookvox.R
+import com.eminokumus.bookvox.auth.forgetpassword.ForgetPasswordActivity
 import com.eminokumus.bookvox.databinding.ActivityLoginBinding
 import com.eminokumus.bookvox.auth.signup.SignUpActivity
 
@@ -32,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         observeViewModel()
-        checkLoggedInUser()
+        //checkLoggedInUser()
         checkFields()
         setOnClickListeners()
     }
@@ -40,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
     private fun observeViewModel() {
         observeEmail()
         observePassword()
+        observeIsLoginSuccessful()
     }
 
     private fun observePassword() {
@@ -58,6 +60,16 @@ class LoginActivity : AppCompatActivity() {
                 binding.emailEditText.error = null
             } else {
                 binding.emailEditText.error = "Wrong email format"
+            }
+        }
+    }
+
+    private fun observeIsLoginSuccessful() {
+        viewModel.isLoginSuccessful.observe(this) {
+            if (it) {
+                navigateToMainActivity()
+            } else {
+                Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -88,15 +100,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkFirebaseAuthentication() {
-        if (viewModel.isFirebaseAuthenticationSuccessful(
-                binding.emailEditText.text.toString(),
-                binding.passwordEditText.text.toString()
-            )
-        ) {
-            navigateToMainActivity()
-        } else {
-            Toast.makeText(this, "Wrong email or password", Toast.LENGTH_SHORT).show()
-        }
+        viewModel.checkFirebaseAuthentication(
+            binding.emailEditText.text.toString(),
+            binding.passwordEditText.text.toString()
+        )
+
     }
 
     private fun navigateToMainActivity() {
@@ -106,7 +114,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setForgetButtonOnClickListener() {
-        // TODO("Navigate to Forget Password screen after implementing the ForgetPasswordActivity")
+        binding.forgetPasswordButton.setOnClickListener {
+            val intent = Intent(this, ForgetPasswordActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun setRegisterTextOnClickListener() {
