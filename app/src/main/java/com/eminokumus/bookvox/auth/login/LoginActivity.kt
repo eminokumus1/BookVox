@@ -33,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         observeViewModel()
-        //checkLoggedInUser()
+        checkLoggedInUser()
         checkFields()
         setOnClickListeners()
     }

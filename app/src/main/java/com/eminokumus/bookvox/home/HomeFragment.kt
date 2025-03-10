@@ -42,12 +42,20 @@ class HomeFragment : Fragment() {
         binding.homeRecycler.adapter = homeAdapter
 
         observeViewModel()
-
+        setSettingsButtonOnClickListener()
     }
 
     private fun observeViewModel() {
         viewModel.bookList.observe(viewLifecycleOwner) {
             homeAdapter.bookList = it.toMutableList()
+        }
+    }
+
+    private fun setSettingsButtonOnClickListener(){
+        binding.toolbar.settingImgButton.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            )
         }
     }
 

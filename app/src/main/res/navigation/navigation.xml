@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bookDetailsFragment"
             app:destination="@id/bookDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -22,6 +25,9 @@
         <action
             android:id="@+id/action_searchFragment_to_bookDetailsFragment"
             app:destination="@id/bookDetailsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookDetailsFragment"
@@ -61,4 +67,9 @@
             android:name="book"
             app:argType="com.eminokumus.bookvox.model.Book" />
     </dialog>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.eminokumus.bookvox.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

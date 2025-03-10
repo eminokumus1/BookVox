@@ -12,6 +12,7 @@ import com.eminokumus.bookvox.R
 import com.eminokumus.bookvox.ScreenType
 import com.eminokumus.bookvox.databinding.FragmentSearchBinding
 import com.eminokumus.bookvox.home.HomeAdapter
+import com.eminokumus.bookvox.home.HomeFragmentDirections
 import com.eminokumus.bookvox.home.OnBookItemClickListener
 import com.eminokumus.bookvox.model.Book
 
@@ -46,6 +47,7 @@ class SearchFragment : Fragment() {
 
         observeViewModel()
         watchSearchEditText()
+        setSettingsButtonOnClickListener()
 
         binding.searchRecycler.adapter = homeAdapter
     }
@@ -59,6 +61,14 @@ class SearchFragment : Fragment() {
     private fun watchSearchEditText() {
         binding.searchEditText.doAfterTextChanged {
             viewModel.searchInBooks(binding.searchEditText.text.toString())
+        }
+    }
+
+    private fun setSettingsButtonOnClickListener(){
+        binding.toolbar.settingImgButton.setOnClickListener {
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToSettingsFragment()
+            )
         }
     }
 }
