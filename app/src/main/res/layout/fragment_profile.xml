@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings.ProfileFragment">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/profile"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/poppins"
+        android:text="@string/save"
+        android:textColor="@color/primary_purple"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
+
+    <View
+        android:id="@+id/firstDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/saveButton" />
+
+    <FrameLayout
+        android:id="@+id/imageFrameLayout"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstDivider"
+        android:layout_margin="20dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/userImage"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstDivider"
+            app:shapeAppearanceOverlay="@style/settingsImageRoundedImageView"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <ImageButton
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_gravity="end"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/light_grey_half_transparent"/>
+
+    </FrameLayout>
+
+
+
+    <View
+        android:id="@+id/secondDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/imageFrameLayout" />
+
+    <TextView
+        android:id="@+id/displayNameText"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center|start"
+        android:text="@string/display_name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/nameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/secondDivider" />
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/displayNameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/displayNameText"
+        app:layout_constraintTop_toTopOf="@id/displayNameText" />
+
+    <View
+        android:id="@+id/thirdDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/displayNameText" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center|start"
+        android:text="@string/username"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/usernameEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/thirdDivider" />
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/usernameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/usernameText"
+        app:layout_constraintTop_toTopOf="@id/usernameText" />
+
+    <View
+        android:id="@+id/fourthDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/usernameText" />
+
+    <TextView
+        android:id="@+id/emailText"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center|start"
+        android:text="@string/email"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/emailEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fourthDivider" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/emailText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/emailText"
+        app:layout_constraintTop_toTopOf="@id/emailText" />
+
+    <View
+        android:id="@+id/fifthDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/emailText" />
+
+    <TextView
+        android:id="@+id/phoneText"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center|start"
+        android:text="@string/phone"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/phoneEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fifthDivider" />
+
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/phoneText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/phoneText"
+        app:layout_constraintTop_toTopOf="@id/phoneText" />
+
+    <View
+        android:id="@+id/sixthDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/phoneText" />
+
+    <TextView
+        android:id="@+id/dateOfBirthText"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center|start"
+        android:text="@string/date_of_birth"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/dateOfBirthEditText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sixthDivider" />
+
+    <EditText
+        android:id="@+id/dateOfBirthEditText"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@id/dateOfBirthText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dateOfBirthText"
+        app:layout_constraintTop_toTopOf="@id/dateOfBirthText" />
+
+    <View
+        android:id="@+id/seventhDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey"
+        app:layout_constraintTop_toBottomOf="@id/dateOfBirthText" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

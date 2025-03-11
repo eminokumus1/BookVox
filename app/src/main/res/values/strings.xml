@@ -92,4 +92,9 @@
     <string name="subscription">Subscription</string>
     <string name="about_bookvox">About BookVox</string>
     <string name="log_out">Log out</string>
+    <string name="save">Save</string>
+    <string name="profile">Profile</string>
+    <string name="display_name">Display Name</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone</string>
 </resources>
