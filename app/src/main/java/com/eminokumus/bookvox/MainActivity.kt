@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottombar.setupWithNavController(navController)
 
-
+        (application as MyApplication).currentUser = Constants.dummyUser
     }
 
 }

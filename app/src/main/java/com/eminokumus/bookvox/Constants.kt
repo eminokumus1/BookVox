@@ -1,8 +1,20 @@
 package com.eminokumus.bookvox
 
 import com.eminokumus.bookvox.model.Book
+import com.eminokumus.bookvox.model.User
+import java.util.Date
 
 object Constants {
+
+    val dummyUser = User(
+        "1",
+        "John Doe",
+        "johnjohn",
+        "john.doe@example.com",
+        "+123456789",
+        "https://cultivatedculture.com/wp-content/uploads/2019/12/LinkedIn-Profile-Picture-Example-Sami-Viitama%CC%88ki-.jpeg",
+        Date(1990, 1, 1)
+    )
 
     val bookList = listOf(
         Book(
