@@ -5,13 +5,14 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.eminokumus.bookvox.extensions.checkDateFormatWithDash
+import com.eminokumus.bookvox.extensions.checkDateFormatWithDot
+import com.eminokumus.bookvox.extensions.checkDateFormatWithSlash
 import com.eminokumus.bookvox.extensions.isValidEmail
 import com.eminokumus.bookvox.extensions.isValidPassword
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class SignUpViewModel : ViewModel() {
 
@@ -64,11 +65,11 @@ class SignUpViewModel : ViewModel() {
     fun isDateOfBirthValid(date: String): Boolean {
         try {
             if (date.contains("/")) {
-                return checkSlashFormat(date)
+                return date.checkDateFormatWithSlash()
             } else if (date.contains(".")) {
-                return checkDotFormat(date)
+                return date.checkDateFormatWithDot()
             } else if (date.contains("-")) {
-                return checkDashFormat(date)
+                return date.checkDateFormatWithDash()
             }
             return false
         } catch (e: Exception) {
@@ -76,39 +77,5 @@ class SignUpViewModel : ViewModel() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun checkSlashFormat(date: String): Boolean {
-        val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
-        val localDate = LocalDate.parse(date, formatter)
-        if (!formatter.format(localDate)
-                .equals(date) || localDate > LocalDate.now()
-        ) {
-            return false
-        }
-        return true
-    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun checkDotFormat(date: String): Boolean {
-        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
-        val localDate = LocalDate.parse(date, formatter)
-        if (!formatter.format(localDate)
-                .equals(date) || localDate > LocalDate.now()
-        ) {
-            return false
-        }
-        return true
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun checkDashFormat(date: String): Boolean {
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
-        val localDate = LocalDate.parse(date, formatter)
-        if (!formatter.format(localDate)
-                .equals(date) || localDate > LocalDate.now()
-        ) {
-            return false
-        }
-        return true
-    }
 }

@@ -1,19 +1,23 @@
 package com.eminokumus.bookvox
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.eminokumus.bookvox.model.Book
 import com.eminokumus.bookvox.model.User
+import java.time.LocalDate
 import java.util.Date
 
 object Constants {
 
-    val dummyUser = User(
+    @RequiresApi(Build.VERSION_CODES.O)
+    var dummyUser = User(
         "1",
         "John Doe",
         "johnjohn",
         "john.doe@example.com",
         "+123456789",
         "https://cultivatedculture.com/wp-content/uploads/2019/12/LinkedIn-Profile-Picture-Example-Sami-Viitama%CC%88ki-.jpeg",
-        Date(1990, 1, 1)
+        LocalDate.of(1990,1,1)
     )
 
     val bookList = listOf(
